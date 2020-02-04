@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, wait } from '@testing-library/react';
-import { getByTestId, fireEvent } from '@testing-library/dom';
+import { getByTestId, queryAllBy, fireEvent } from '@testing-library/dom';
 import App from './App';
 
 
@@ -19,7 +19,6 @@ const ensureGridApiHasBeenSet = (component) => {
 
 
 describe('row selection', () => {
-
   let appComponent = null;
 
   beforeEach(async () => {
@@ -34,15 +33,15 @@ describe('row selection', () => {
   test('all rows selected', () => {
     let selectAllButton = getByTestId(appComponent.container, 'selectAll');
     fireEvent.click(selectAllButton);
-    let selectedNodesLength = appComponent.container.querySelectorAll('.ag-center-cols-container .ag-row-selected').length;
-    expect(selectedNodesLength).toBe(3);
+    let selectedNodes = appComponent.container.querySelectorAll('.ag-center-cols-container .ag-row-selected');
+    expect(selectedNodes.length).toBe(3);
   });
 
   test('all rows deselected', () => {
     let deSelectAllButton = getByTestId(appComponent.container, 'deSelectAll');
     fireEvent.click(deSelectAllButton);
-    let selectedNodesLength = appComponent.container.querySelectorAll('.ag-center-cols-container .ag-row-selected').length;
-    expect(selectedNodesLength).toBe(0);
+    let selectedNodes = appComponent.container.querySelectorAll('.ag-center-cols-container .ag-row-selected');
+    expect(selectedNodes.length).toBe(0);
   });
 
 });
