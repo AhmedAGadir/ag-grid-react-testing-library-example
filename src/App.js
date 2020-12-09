@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-enterprise';
 
 class App extends Component {
   constructor(props) {
